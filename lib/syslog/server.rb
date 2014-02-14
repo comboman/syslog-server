@@ -5,11 +5,10 @@ module Syslog
     VERSION = '1.0.0'
 
     def initialize(transport)
-      parent = self
       @stop = false
 
       @thread = Thread.new do
-        until parent.stopped?
+        until stopped?
           msg = transport.read
           yield msg unless msg.nil?
           sleep 0.1
