@@ -26,20 +26,4 @@ describe Syslog::Transport::UDPTransport do
     sender.wont_be_nil
     msg.must_be_instance_of Syslog::Message
   end
-
-  it 'should return nil for invalid messages' do
-    @sock.send "blah blah blah", 0, '127.0.0.1', 1234
-
-    sleep 0.1
-
-    msg, sender = @transport.read
-    msg.must_be_nil
-    sender.must_be_nil
-  end
-
-  it 'should return nil if no data has been received' do
-    msg, sender = @transport.read
-    msg.must_be_nil
-    sender.must_be_nil
-  end
 end
