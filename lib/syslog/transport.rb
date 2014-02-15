@@ -1,2 +1,6 @@
+require 'syslog/queue'
+require 'syslog/stateful_socket'
+require 'syslog/stateless_socket'
+require 'syslog/transport/tcp'
 require 'syslog/transport/udp'
 require 'syslog/transport/udp6'
