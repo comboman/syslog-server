@@ -27,9 +27,12 @@ describe Syslog::Server do
     transport.expect(:read, 123)
     transport.expect(:close, nil)
 
-    server = Syslog::Server.new(transport) { |msg| block.call(msg) }
-    sleep 0.1
-    server.stop
+    server = Syslog::Server.new(transport) do |msg|
+      block.call(msg)
+      server.stop
+    end
+
+    sleep 0.5
 
     block.verify
     transport.verify
