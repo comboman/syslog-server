@@ -1,13 +1,15 @@
 require 'socket'
 
 require 'syslog/limit'
-require 'syslog/message'
+require 'syslog/transport/stateless_socket'
 
 module Syslog
   module Transport
 
-    class UDPTransport
-      def initialize(port_or_hostname, port = nil, socket = nil)
+    class UDPTransport < StatelessSocketTransport
+      def initialize(port_or_hostname, port = nil, sock_proto = Socket::AF_INET)
+        @sock = UDPSocket.new(sock_proto)
+
         if port.nil?
           host = ''
           port = port_or_hostname
@@ -15,27 +17,13 @@ module Syslog
           host = port_or_hostname
         end
 
-        @sock = socket || UDPSocket.new
         @sock.bind(host, port)
-      end
 
-      def read
-        msg = nil
-
-        while msg.nil?
-          begin
-            data, sender = @sock.recvfrom(Syslog::Limit::MAXIMUM_SIZE)
-            msg = [ Syslog::Message.new(data), sender ]
-          rescue ArgumentError
-            # Malformed data; ignore.
-          end
-        end
-
-        msg
+        super(@sock)
       end
 
       def close
-        @sock.close
+        @sock.close unless @sock.closed?
       end
     end
 

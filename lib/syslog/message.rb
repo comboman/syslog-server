@@ -61,5 +61,13 @@ module Syslog
       str << " #{@message}" unless @message.nil?
       str
     end
+
+    def self.parse(str)
+      begin
+        Message.new(str)
+      rescue ArgumentError
+        nil
+      end
+    end
   end
 end

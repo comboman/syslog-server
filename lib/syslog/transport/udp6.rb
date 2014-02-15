@@ -9,7 +9,7 @@ module Syslog
       def initialize(port_or_hostname, port = nil)
         super (port.nil? ? '::' : port_or_hostname),
               (port.nil? ? port_or_hostname : port),
-              UDPSocket.new(Socket::AF_INET6)
+              Socket::AF_INET6
       end
     end
 
