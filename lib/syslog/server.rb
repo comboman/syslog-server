@@ -5,6 +5,7 @@ module Syslog
     VERSION = '1.0.0'
 
     def initialize(transport)
+<<<<<<< HEAD
       @stop = false
 
       @thread = Thread.new do
@@ -12,16 +13,26 @@ module Syslog
           msg = transport.read
           yield msg unless msg.nil?
           sleep 0.1
+=======
+      @thread = Thread.new do
+        begin
+          loop { yield transport.read }
+        ensure
+          transport.close
+>>>>>>> master
         end
       end
     end
 
     def stop
-      @stop = true
+      unless @thread.nil?
+        @thread.kill
+        @thread = nil
+      end
     end
 
     def stopped?
-      @stop
+      @thread.nil?
     end
   end
 end
