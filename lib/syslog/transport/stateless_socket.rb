@@ -13,7 +13,7 @@ module Syslog
         @thread = Thread.new do
           begin
             loop do
-              data, sender = socket.recvfrom(Syslog::Limit::MAXIMUM_SIZE)
+              data, sender = socket.recvfrom(Syslog::Limit::MAXIMUM_MESSAGE_SIZE)
               unless (msg = Syslog::Message.parse(data)).nil?
                 push(msg, sender)
               end

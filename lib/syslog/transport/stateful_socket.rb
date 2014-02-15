@@ -38,7 +38,7 @@ module Syslog
 
               # If we have data on any, process them:
               have_data_for[0].each do |client|
-                data = client.recv(Syslog::Limit::MAXIMUM_SIZE)
+                data = client.recv(Syslog::Limit::MAXIMUM_MESSAGE_SIZE)
                 unless (msg = Syslog::Message.parse(data)).nil?
                   push(msg, client.peeraddr)
                 end
