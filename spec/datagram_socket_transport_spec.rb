@@ -1,8 +1,8 @@
 require 'minitest/autorun'
 
-require 'syslog/transport/stateless_socket'
+require 'syslog/transport/datagram_socket'
 
-describe Syslog::Transport::StatelessSocketTransport do
+describe Syslog::Transport::DatagramSocketTransport do
   it 'retrieves messages using #recvfrom' do
     sock = Object.new
     class << sock
@@ -22,7 +22,7 @@ describe Syslog::Transport::StatelessSocketTransport do
       end
     end
 
-    t = Syslog::Transport::StatelessSocketTransport.new(sock)
+    t = Syslog::Transport::DatagramSocketTransport.new(sock)
 
     msg, sender = t.read
 
@@ -46,7 +46,7 @@ describe Syslog::Transport::StatelessSocketTransport do
       end
     end
 
-    t = Syslog::Transport::StatelessSocketTransport.new(sock)
+    t = Syslog::Transport::DatagramSocketTransport.new(sock)
 
     t.close
     sock.closed?.must_equal true

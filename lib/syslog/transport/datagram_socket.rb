@@ -6,7 +6,7 @@ require 'syslog/transport/queue'
 module Syslog
   module Transport
 
-    class StatelessSocketTransport < QueueTransport
+    class DatagramSocketTransport < QueueTransport
       def initialize(socket)
         super()
 
