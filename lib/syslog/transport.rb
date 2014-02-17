@@ -1,5 +1,4 @@
 require 'syslog/transport/queue'
-require 'syslog/transport/stateful_socket'
 require 'syslog/transport/stateless_socket'
 require 'syslog/transport/tcp'
 require 'syslog/transport/udp'
