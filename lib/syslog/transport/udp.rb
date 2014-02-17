@@ -1,12 +1,12 @@
 require 'socket'
 
 require 'syslog/limit'
-require 'syslog/transport/stateless_socket'
+require 'syslog/transport/datagram_socket'
 
 module Syslog
   module Transport
 
-    class UDPTransport < StatelessSocketTransport
+    class UDPTransport < DatagramSocketTransport
       def initialize(port_or_hostname, port = nil, sock_proto = Socket::AF_INET)
         @sock = UDPSocket.new(sock_proto)
 
