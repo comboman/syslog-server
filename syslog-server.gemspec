@@ -6,7 +6,7 @@ require 'syslog/server'
 Gem::Specification.new do |spec|
   spec.name          = 'syslog-server'
   spec.version       = Syslog::Server::VERSION
-  spec.authors       = ['north636']
+  spec.authors       = ['Chris Davies']
   spec.email         = ['chris.davies.uk@member.mensa.org']
   spec.summary       = %q{A syslog server toolkit.}
   spec.description   = %q{A syslog server toolkit.}
