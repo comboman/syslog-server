@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['chris.davies.uk@member.mensa.org']
   spec.summary       = %q{A syslog server toolkit.}
   spec.description   = %q{A syslog server toolkit.}
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/north636/syslog-server'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
