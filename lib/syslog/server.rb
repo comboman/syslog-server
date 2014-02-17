@@ -7,7 +7,7 @@ require 'syslog/transport'
 
 module Syslog
   class Server
-    VERSION = '1.0.0'
+    VERSION = '1.0.1'
 
     def initialize(transport)
       @thread = Thread.new do
